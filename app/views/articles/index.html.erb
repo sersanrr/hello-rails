@@ -1,0 +1,22 @@
+<h1>Listing articles</h1>
+ <%= link_to 'Все статьи', controller: 'articles' %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Посмотреть', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Удалить', article_path(article),
+              method: :delete,
+              data: { confirm: 'Вы уверены? Это насовсем!' } %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Новая запись', new_article_path %>
